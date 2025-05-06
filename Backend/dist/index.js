@@ -15,15 +15,13 @@ const app = express();
 const corsOptions = {
     origin: process.env.Frontend_Url,
     credentials: true,
-    // methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    // allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 };
-//app.options('/{*splat}', cors(corsOptions));
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookiesParser());
-app.use('/resumes', express.static(path.join(__dirname, '../', 'thumbnails')));
 app.use(authRoutes);
 app.use(candidateRoutes);
 app.use(employeeRoutes);

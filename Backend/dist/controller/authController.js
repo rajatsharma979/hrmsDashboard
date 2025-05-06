@@ -42,9 +42,8 @@ const postLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const accessToken = generateToken(hr);
         res.cookie("accessToken", accessToken, {
             httpOnly: true,
-            //secure: true,
-            secure: false,
-            sameSite: "lax",
+            secure: true,
+            sameSite: "none",
             maxAge: Number(process.env.Cookie_expiry)
         });
         res.status(200).json({ msg: "LoggedIn Successfully" });
