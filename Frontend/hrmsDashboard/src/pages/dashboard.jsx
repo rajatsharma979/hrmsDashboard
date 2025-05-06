@@ -16,7 +16,10 @@ const dashboard = () => {
 
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/logout`, {
                 method: "GET",
-                credentials: "include"
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                }
             });
 
             if(res.ok){
