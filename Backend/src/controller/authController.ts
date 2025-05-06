@@ -58,7 +58,6 @@ const postLogin = async (req: Request, res: Response)=>{
             {
             httpOnly: true,
             secure: true,
-            // secure: false,
             sameSite: "none",
             maxAge: Number(process.env.Cookie_expiry)!
         })
