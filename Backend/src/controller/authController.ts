@@ -57,9 +57,9 @@ const postLogin = async (req: Request, res: Response)=>{
         res.cookie("accessToken", accessToken,
             {
             httpOnly: true,
-            //secure: true,
-            secure: false,
-            sameSite: "lax",
+            secure: true,
+            // secure: false,
+            sameSite: "none",
             maxAge: Number(process.env.Cookie_expiry)!
         })
 
