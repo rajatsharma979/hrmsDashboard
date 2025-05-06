@@ -84,6 +84,7 @@ const candidate = ()=>{
           } catch (err) {
             console.error(err);
             setLoading(false);
+            alert("Error updating candidate status");
             
           }
       };

@@ -57,6 +57,7 @@ const Leaves = ()=>{
             } catch (err) {
                 setError(err.message);
                 setLoading(false);
+                alert("Error getting leaves");
             }
         };
 
@@ -88,6 +89,7 @@ const Leaves = ()=>{
 
         } catch (err) {
             setError(err.message);
+            alert("Error fetching employees");
         }
     }
     
@@ -117,6 +119,7 @@ const Leaves = ()=>{
           } catch (err) {
             console.error(err);
             setLoading(false);
+            alert("Error updating leave status");
           }
       };
 

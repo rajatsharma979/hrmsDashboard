@@ -3,7 +3,6 @@ import React,{ useState } from "react";
 const taskAssign = ({ onClose, onSuccess, id })=>{
 
     const [task, setTask] = useState("");
-    const [loading, setLoading] = useState(true);
 
     const handleSubmit = async (e)=>{
 
@@ -23,23 +22,20 @@ const taskAssign = ({ onClose, onSuccess, id })=>{
             });
     
             if(!res.ok){
-                setLoading(false);
+             
                 throw new Error("error in assigning task");
             }else{
                 setTask("");
                 onClose();
                 onSuccess();
-                setLoading(false);
+            
             }  
         }
         catch(error){
             alert("Error assigning task");
             console.log("Error assigning task");
-            setLoading(false);
         } 
     }
-
-    if (loading) return <div className="loading">Loading candidates...</div>;
 
     return(
         <div>

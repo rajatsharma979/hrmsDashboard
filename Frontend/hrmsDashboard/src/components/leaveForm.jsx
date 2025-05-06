@@ -11,7 +11,6 @@ const LeaveData = ({ onClose, onSuccess, employeeList }) => {
   const [leaveReason, setLeaveReason] = useState("");
   const [leaveDoc, setLeaveDoc] = useState(null);
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(true);
 
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -96,7 +95,7 @@ const LeaveData = ({ onClose, onSuccess, employeeList }) => {
           allErrors[err.path] = err.msg;
         }
         setErrors(allErrors);
-        setLoading(false);
+     
         console.log("Validation errors:", data.msg);
       } else {
        
@@ -111,17 +110,15 @@ const LeaveData = ({ onClose, onSuccess, employeeList }) => {
         onSuccess();
 
         console.log("Leave added successfully");
-        setLoading(false);
+   
 
       }
     } catch (err) {
       console.error("Server error", err);
       setErrors({ general: "An error occurred. Please try again." });
-      setLoading(false);
     }
   };
 
-  if (loading) return <div className="loading">Loading candidates...</div>;
 
   return (
     <div>

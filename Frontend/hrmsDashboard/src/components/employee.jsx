@@ -46,6 +46,7 @@ const getEmployees = () => {
         } catch (err) {
             setError(err.message);
             setLoading(false);
+            alert("Error fetching employees");
         }
     };
 
@@ -86,6 +87,7 @@ const getEmployees = () => {
             catch(error){
                 console.log("Error while deleting employee", error);
                 setLoading(false);
+                alert("Error deleting employing");
             }
 
         }

@@ -36,6 +36,7 @@ const attendance = ()=>{
             } catch (err) {
                 setError(err.message);
                 setLoading(false);
+                alert("Error getting employees");
             }
         };
 
@@ -65,6 +66,7 @@ const attendance = ()=>{
                     );
                   } catch (err) {
                     console.error(err);
+                    alert("Error updating attendance");
                     
                   }
               };
