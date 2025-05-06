@@ -10,6 +10,27 @@ const dashboard = () => {
 
     const [activeComponent, setActiveComponent] = useState("candidates");
 
+    const logout = async ()=>{
+
+        try{
+
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/logout`, {
+                method: "GET",
+                headers:{
+                    "Conten-Type": "application/json"
+                },
+                credentials: "include"
+            });
+
+            if(res.ok){
+                navigate('/');
+            }
+        }
+        catch(error){
+            alert("Error logging out");
+        }
+    }
+
   const renderComponent = () => {
 
     if(activeComponent === "candidates"){
@@ -44,7 +65,7 @@ const dashboard = () => {
                 </div>
                 <div className="headings">
                     Others
-                    <div className="fields">Logout</div>
+                    <div className="fields" onClick={logout}>Logout</div>
                 </div>
             </div>
             <div className="contentPannel">

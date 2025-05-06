@@ -109,7 +109,32 @@ const postSignup = async (req: Request, res: Response)=>{
     }
 }
 
+const logout = (req: Request, res: Response)=>{
+
+    try{
+
+        if(!req.cookies.accessToken){
+            res.status(400).json({msg: "invalid token"});
+            return;
+        }
+
+        res.clearCookie('accessToken',{
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+        });
+
+        res.status(200).json({msg: "logout successful"});
+        return;
+    }
+    catch(error){
+        res.status(500).json({msg: "Internsl server error"});
+        return;
+    }
+}
+
 export default {
     postLogin,
-    postSignup
+    postSignup,
+    logout
 }

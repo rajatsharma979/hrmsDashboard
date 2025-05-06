@@ -10,4 +10,6 @@ router.post('/login', validateHrData.validateLoginData, authController.postLogin
 
 router.post('/signup', validateHrData.validateSignupData, authController.postSignup);
 
+router.get('/logout', authController.logout);
+
 export default router;
