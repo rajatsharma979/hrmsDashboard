@@ -62,7 +62,7 @@ const employeeData = ({ onClose, onSuccess, employee }) => {
 
     try {
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/editEmployee`, {
-        method: 'PATCH',
+        method: 'POST',
         credentials: 'include',
         headers:{
             "Content-Type": "application/json"

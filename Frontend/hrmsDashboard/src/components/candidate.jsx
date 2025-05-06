@@ -65,7 +65,7 @@ const candidate = ()=>{
 
             console.log("in status change");
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/updateCandidateStatus/${id}`, {
-              method: "PATCH",
+              method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },

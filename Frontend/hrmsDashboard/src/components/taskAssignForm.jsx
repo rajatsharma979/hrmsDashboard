@@ -13,7 +13,7 @@ const taskAssign = ({ onClose, onSuccess, id })=>{
             console.log(task);
 
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/assignTask/${id}`,{
-                method: "PATCH",
+                method: "POST",
                 credentials: "include",
                 headers:{
                     "Content-Type": "application/json"

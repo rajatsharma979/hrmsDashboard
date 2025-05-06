@@ -38,6 +38,6 @@ router.post('/postCandidate', isAuthenticated, resumeUpload, validateCandidateDa
 
 router.get('/downloadResume', isAuthenticated, candidateController.getResume);
 
-router.patch('/updateCandidateStatus/:id', isAuthenticated, candidateController.updateCandidateStatus);
+router.post('/updateCandidateStatus/:id', isAuthenticated, candidateController.updateCandidateStatus);
 
 export default router;
