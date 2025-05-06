@@ -121,6 +121,8 @@ const LeaveData = ({ onClose, onSuccess, employeeList }) => {
     }
   };
 
+  if (loading) return <div className="loading">Loading candidates...</div>;
+
   return (
     <div>
       <h2>Add Leave</h2>

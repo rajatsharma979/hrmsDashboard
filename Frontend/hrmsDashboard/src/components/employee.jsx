@@ -89,6 +89,9 @@ const getEmployees = () => {
             }
 
         }
+
+        if (loading) return <div className="loading">Loading candidates...</div>;
+        
     return (
 
         <div>

@@ -100,6 +100,8 @@ const candidate = ()=>{
         link.click();
     };
 
+    if (loading) return <div className="loading">Loading candidates...</div>;
+
     return(
         <div>
                 <h3>Candidates</h3>

@@ -105,6 +105,8 @@ const employeeData = ({ onClose, onSuccess, employee }) => {
     }
   };
 
+  if (loading) return <div className="loading">Loading candidates...</div>;
+
   return (
     <div>
       <h2>Edit Employee</h2>

@@ -100,6 +100,8 @@ const CandidateData = ({ onClose, onSuccess }) => {
     }
   };
 
+  if (loading) return <div className="loading">Loading candidates...</div>;
+
   return (
     <div>
       <h2>Add Candidate</h2>

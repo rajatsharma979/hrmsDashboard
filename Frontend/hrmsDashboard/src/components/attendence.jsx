@@ -80,6 +80,8 @@ const attendance = ()=>{
                 emp.task.toLowerCase().includes(searchQuery.toLowerCase())
             ) : filteredEmployeesByStatus;
 
+            if (loading) return <div className="loading">Loading candidates...</div>;
+
     return(
         <div>
             <h3>Attendance</h3>

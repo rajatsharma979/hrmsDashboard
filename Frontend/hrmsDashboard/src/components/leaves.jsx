@@ -160,6 +160,8 @@ const Leaves = ()=>{
         return null;
       };
 
+      if (loading) return <div className="loading">Loading candidates...</div>;
+
     return(
         
         <div>
