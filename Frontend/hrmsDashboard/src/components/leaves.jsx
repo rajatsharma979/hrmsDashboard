@@ -15,6 +15,7 @@ const Leaves = ()=>{
     const [presentEmployees, setPresentEmployees] = useState([]);
     const [filterStatus, setFilterStatus] = useState("");
     const [leaveDates, setLeaveDates] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const [error, setError] = useState(null);
 
@@ -30,6 +31,7 @@ const Leaves = ()=>{
     
                 if (!response.ok) {
                     console.log(response);
+                    setLoading(false);
                 }
     
                 const data = await response.json();
@@ -48,11 +50,13 @@ const Leaves = ()=>{
                 setLeaveDates(approvedLeaves);
 
                 setEmployees(data.msg);
+                setLoading(false);
 
                 console.log("leaves", leaveDates);
 
             } catch (err) {
                 setError(err.message);
+                setLoading(false);
             }
         };
 
@@ -69,6 +73,7 @@ const Leaves = ()=>{
 
             if (!response.ok) {
                 console.log(response);
+                setLoading(false);
             }
 
             const data = await response.json();
@@ -79,6 +84,7 @@ const Leaves = ()=>{
             const femps = emps.filter(emp => emp.attendance.toLowerCase() === "present");
             
             setPresentEmployees(femps);
+            setLoading(false);
 
         } catch (err) {
             setError(err.message);
@@ -107,8 +113,10 @@ const Leaves = ()=>{
         
             fetchEmployees();
 
+
           } catch (err) {
             console.error(err);
+            setLoading(false);
           }
       };
 

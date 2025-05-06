@@ -10,6 +10,7 @@ const getEmployees = () => {
     const [filterPosition, setFilterPosition] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
     const [showForm, setShowForm] = useState(false);
+    const [loading, setLoading] = useState(true);
     
     const [employees, setEmployees] = useState([]);
     const [error, setError] = useState(null);
@@ -33,6 +34,7 @@ const getEmployees = () => {
             });
 
             if (!response.ok) {
+                setLoading(false);
                 console.log(response);
             }
 
@@ -40,8 +42,10 @@ const getEmployees = () => {
             console.log("all emp", data.msg);
             
             setEmployees(data.msg);
+            setLoading(false);
         } catch (err) {
             setError(err.message);
+            setLoading(false);
         }
     };
 
@@ -73,6 +77,7 @@ const getEmployees = () => {
     
                 if(!res.ok){
                     throw new Error("Failed to delete");
+                    setLoading(false);
                 }
                 fetchEmployees();
 
@@ -80,6 +85,7 @@ const getEmployees = () => {
             }
             catch(error){
                 console.log("Error while deleting employee", error);
+                setLoading(false);
             }
 
         }

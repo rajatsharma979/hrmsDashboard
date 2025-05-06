@@ -23,6 +23,7 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'],
   };
   
+app.options('/{*splat}', cors(corsOptions));
 app.use(cors(corsOptions));
 
 app.use(express.urlencoded({extended: false}));

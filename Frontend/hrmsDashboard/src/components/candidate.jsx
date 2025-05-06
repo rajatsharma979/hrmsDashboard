@@ -8,6 +8,7 @@ const candidate = ()=>{
 
     const [showForm, setShowForm] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
+    const [loading, setLoading] = useState(true);
 
     let sNo = 1;
     const navigate = useNavigate();
@@ -30,13 +31,16 @@ const candidate = ()=>{
 
             if (!response.ok) {
                 console.log(response);
+                setLoading(false);
 
             }
             const data = await response.json();
             
             setCandidates(data.msg);
+            setLoading(false);
         } catch (err) {
             setError(err.message);
+            setLoading(false);
         }
     };
 
@@ -76,8 +80,10 @@ const candidate = ()=>{
                 c._id === id ? { ...c, status: newStatus } : c
               )
             );
+            setLoading(false);
           } catch (err) {
             console.error(err);
+            setLoading(false);
             
           }
       };

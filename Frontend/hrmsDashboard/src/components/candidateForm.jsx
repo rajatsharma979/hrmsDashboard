@@ -12,6 +12,8 @@ const CandidateData = ({ onClose, onSuccess }) => {
   const [resume, setResume] = useState(null);
   const [errors, setErrors] = useState({});
 
+  const [loading, setLoading] = useState(true);
+
   const [agreed, setAgreed] = useState(false);
 
   const navigate = useNavigate();
@@ -72,6 +74,7 @@ const CandidateData = ({ onClose, onSuccess }) => {
           allErrors[err.path] = err.msg;
         }
         setErrors(allErrors);
+        setLoading(false);
         console.log("Validation errors:", data.msg);
       } else {
        
@@ -85,6 +88,7 @@ const CandidateData = ({ onClose, onSuccess }) => {
 
         onClose();
         onSuccess();
+        setLoading(false);
 
         console.log("Candidate added successfully");
 
@@ -92,6 +96,7 @@ const CandidateData = ({ onClose, onSuccess }) => {
     } catch (err) {
       console.error("Server error", err);
       setErrors({ general: "An error occurred. Please try again." });
+      setLoading(false);
     }
   };
 

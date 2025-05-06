@@ -8,6 +8,7 @@ const attendance = ()=>{
     const [filterStatus, setFilterStatus] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
     const [showForm, setShowForm] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const [employees, setEmployees] = useState([]);
         const [error, setError] = useState(null);
@@ -23,6 +24,7 @@ const attendance = ()=>{
                 });
 
                 if (!response.ok) {
+                    setLoading(false);
                     console.log(response);
                 }
 
@@ -30,8 +32,10 @@ const attendance = ()=>{
                 console.log("all emp", data.msg);
                 
                 setEmployees(data.msg);
+                setLoading(false);
             } catch (err) {
                 setError(err.message);
+                setLoading(false);
             }
         };
 

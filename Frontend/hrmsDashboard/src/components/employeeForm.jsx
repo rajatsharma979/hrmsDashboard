@@ -10,6 +10,8 @@ const employeeData = ({ onClose, onSuccess, employee }) => {
   const [position, setPosition] = useState(employee.position);
   const [department, setDepartment] = useState(employee.department);
   const [joiningDate, setJoiningDate] = useState(employee.joiningDate);
+  const [loading, setLoading] = useState(true);
+
   const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
@@ -77,6 +79,7 @@ const employeeData = ({ onClose, onSuccess, employee }) => {
           allErrors[err.path] = err.msg;
         }
         setErrors(allErrors);
+        setLoading(false);
         console.log("Validation errors:", data.msg);
       } else {
        
@@ -92,11 +95,13 @@ const employeeData = ({ onClose, onSuccess, employee }) => {
         onSuccess(formData);
 
         console.log("Employee updated successfully");
+        setLoading(false);
 
       }
     } catch (err) {
       console.error("Server error", err);
       setErrors({ general: "An error occurred. Please try again." });
+      setLoading(false);
     }
   };
 
