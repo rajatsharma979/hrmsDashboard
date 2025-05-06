@@ -35,6 +35,7 @@ const login = ()=>{
             if(!response.ok){
                 setErrors({msg: data.msg});
                 console.log("errors while login", data.msg);
+                navigate('/');
             } else {
 
                 setEmail("");
