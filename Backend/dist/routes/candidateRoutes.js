@@ -29,5 +29,5 @@ const resumeUpload = multer({ storage: resumeStorage, fileFilter: (req, file, cb
 router.get('/getCandidates', isAuthenticated, candidateController.getCandidates);
 router.post('/postCandidate', isAuthenticated, resumeUpload, validateCandidateData, candidateController.postCandidate);
 router.get('/downloadResume', isAuthenticated, candidateController.getResume);
-router.patch('/updateCandidateStatus/:id', isAuthenticated, candidateController.updateCandidateStatus);
+router.post('/updateCandidateStatus/:id', isAuthenticated, candidateController.updateCandidateStatus);
 export default router;

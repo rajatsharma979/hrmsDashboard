@@ -18,8 +18,9 @@ const corsOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
+app.options('/{*splat}', cors(corsOptions));
 app.use(cors(corsOptions));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookiesParser());
 app.use(authRoutes);

@@ -26,12 +26,12 @@ const leaveDocUpload = multer({ storage: leaveDocStorage, fileFilter: (req, file
         }
     } }).single('leaveDoc');
 router.get('/getEmployees', isAuthenticated, employeeController.getEmployees);
-router.patch('/editEmployee', isAuthenticated, employeeController.editEmployee);
-router.patch('/updateEmployeeAttendance/:id', isAuthenticated, employeeController.updateAttendance);
-router.patch('/assignTask/:id', isAuthenticated, employeeController.assignTask);
-router.delete('/deleteEmployee/:id', isAuthenticated, employeeController.deleteEmployee);
+router.post('/editEmployee', isAuthenticated, employeeController.editEmployee);
+router.post('/updateEmployeeAttendance/:id', isAuthenticated, employeeController.updateAttendance);
+router.post('/assignTask/:id', isAuthenticated, employeeController.assignTask);
+router.post('/deleteEmployee/:id', isAuthenticated, employeeController.deleteEmployee);
 router.post('/addEmployeeLeave', isAuthenticated, leaveDocUpload, employeeController.addLeave);
-router.patch('/updateEmployeeLeaveStatus/:id', isAuthenticated, employeeController.updateLeaveStatus);
+router.post('/updateEmployeeLeaveStatus/:id', isAuthenticated, employeeController.updateLeaveStatus);
 router.get('/downloadLeaveDoc', isAuthenticated, employeeController.downloadLeaveDoc);
 router.get('/getLeaves', isAuthenticated, employeeController.getLeaves);
 export default router;
