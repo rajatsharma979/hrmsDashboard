@@ -1,0 +1,13 @@
+.task{
+    width: 50rem;
+    height: 10rem;
+    background-color: white;
+    background: white;
+    color: black;
+    margin: auto;
+}
+
+.taskForm{
+    display: flex;
+    justify-content: center;
+}

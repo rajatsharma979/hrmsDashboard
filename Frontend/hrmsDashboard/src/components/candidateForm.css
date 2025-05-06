@@ -1,0 +1,47 @@
+.error{
+    color: red;
+}
+
+.fields{
+    display: flex;
+    justify-content: space-between;
+}
+
+h2{
+    text-align: center;
+    color:  rgb(255, 135, 241);
+    margin-bottom: 2rem;
+}
+
+.btn{
+    margin-left: 22rem;
+}
+.checkbox{
+    height: 1rem;
+    width: 1rem;
+    display: inline;
+    background-color: antiquewhite;
+    background: white;
+    color: white;
+    margin: 1rem;
+}
+
+.positionFilter{
+    height: 2.5rem;
+    border: 1px rgb(96, 82, 82);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    border-radius: 5px;
+    display: block;
+    width: 20rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 100;
+    font-size: small;
+    padding: 0.5rem;
+    color: black;
+}
+
+button{
+    background-color: gray;
+}

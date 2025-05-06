@@ -1,0 +1,36 @@
+ .action {
+    position: relative;
+    display: inline-block;
+    margin: auto;
+    overflow: visible;
+  }
+  
+  .hover-options {
+    min-width: 5rem;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: black;
+    background-color: rgb(250, 249, 249);
+    border: 1px solid #ccc;
+    z-index: 1000;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;  
+  }
+  
+  .action:hover .hover-options {
+    display: block;
+  }
+  
+  .hover-option {
+    padding: 5px 5px;
+    cursor: pointer;
+  }
+  
+  .hover-option:hover {
+    background-color:rgb(255, 135, 241);
+    color: white;
+  }
+  

@@ -1,0 +1,81 @@
+.cal{
+    display:flex;
+    gap: 1rem;
+}
+
+.allContent.cont{
+    width: 56vw;
+}
+
+.calendar{
+    text-align: center;
+    width:22vw;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.upcal{
+    height: 2rem;
+    background-color: rgb(255, 135, 241);
+}
+
+.mainCal{
+    margin-top: 1rem;
+}
+
+.react-calendar__tile{
+    color: black;
+    font-size: small;
+}
+
+.leave-date {
+    background-color:rgb(255, 255, 255);
+    color: rgb(255, 135, 241);
+    font-weight: bold;
+    border: 2px solid rgb(255, 135, 241)
+}
+
+.past-date {
+    color: #bbb;
+    background-color: #f9f9f9;
+}
+
+.react-calendar__navigation { 
+    color:black             
+  }
+  
+  .react-calendar__navigation__label {
+    color: rgb(255, 135, 241); /* Color of the month name */
+  }
+
+  .react-calendar__navigation__arrow {
+    color: black;         /* Arrow color */
+    font-size: 1.2rem;      /* Size of arrow */
+    padding: 0.5rem;
+  }
+
+.subfield.leaves.srnumber{
+
+    width: 10%;
+}
+
+.subfield.leaves.name{
+
+    width: 18%;
+}
+.subfield.leaves.reason{
+
+    width: 27%;
+}
+.subfield.leaves.date{
+
+    width: 15%;
+}
+.subfield.leaves.status{
+
+    width: 18%;
+}
+.subfield.leaves.action{
+
+    width: 12%;
+}
