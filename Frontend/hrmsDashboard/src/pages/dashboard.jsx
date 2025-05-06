@@ -1,4 +1,5 @@
 import react, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./dashboard.css";
 import Candidate from "../components/candidate";
@@ -7,6 +8,8 @@ import Attendance from "../components/attendence";
 import Leave from "../components/leaves";
 
 const dashboard = () => {
+
+    const navigate = useNavigate();
 
     const [activeComponent, setActiveComponent] = useState("candidates");
 
