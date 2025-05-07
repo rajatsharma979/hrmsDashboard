@@ -20,6 +20,8 @@ const Leaves = ()=>{
 
     const [error, setError] = useState(null);
 
+    let approvedLeaves = [];
+
     const fetchEmployees = async () => {
             try {
                 const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/getLeaves`, {
@@ -37,10 +39,6 @@ const Leaves = ()=>{
     
                 const data = await response.json();
                 console.log("all emp", data.msg);
-                
-                
-
-                let approvedLeaves = [];
 
                 for(let emp of data.msg){
                     if(emp.leaveStatus === "Approved"){
