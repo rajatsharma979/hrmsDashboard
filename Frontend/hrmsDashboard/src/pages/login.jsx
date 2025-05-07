@@ -39,6 +39,7 @@ const login = ()=>{
             const data = await response.json();
             if(!response.ok){
                 setErrors({msg: data.msg});
+                setSubmitting(false);
                 console.log("errors while login", data.msg);
                 navigate('/');
             } else {

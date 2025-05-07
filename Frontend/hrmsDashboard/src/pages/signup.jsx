@@ -49,6 +49,7 @@ const signup = ({ onSignupSuccess })=>{
                     allErrors[err.path] = err.msg;
                 }
                 console.log("all errors", allErrors);
+                setSubmitting(false);
                 setErrors(allErrors);
                 console.log("errors while siging", data.msg);
             } else {
