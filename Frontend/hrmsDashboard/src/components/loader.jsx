@@ -11,7 +11,7 @@ const Loader = () => {
             <RiseLoader
                 color="rgb(255, 135, 241)"
                 size={15}
-            />;
+            />
             </div>
         </div>
     );
