@@ -80,6 +80,8 @@ const employeeData = ({ onClose, onSuccess, employee }) => {
           allErrors[err.path] = err.msg;
         }
         setErrors(allErrors);
+
+        setSubmitting(false);
        
         console.log("Validation errors:", data.msg);
       } else {

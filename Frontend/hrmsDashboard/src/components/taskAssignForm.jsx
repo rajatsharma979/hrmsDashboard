@@ -1,5 +1,7 @@
 import React,{ useState } from "react";
 
+import BtnSpinner from "./btnSpinner";
+
 const taskAssign = ({ onClose, onSuccess, id })=>{
 
     const [task, setTask] = useState("");
@@ -24,7 +26,7 @@ const taskAssign = ({ onClose, onSuccess, id })=>{
             });
     
             if(!res.ok){
-             
+                setSubmitting(false);
                 throw new Error("error in assigning task");
             }else{
                 setTask("");
