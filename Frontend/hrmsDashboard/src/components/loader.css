@@ -2,6 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: transparent;
+}
+
+.loader.btnSpinner{
+    background-color: rgb(255, 135, 241);
 }

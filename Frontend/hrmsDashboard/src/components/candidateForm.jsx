@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./candidateForm.css";
+import BtnSpinner from "./btnSpinner";
 
 const CandidateData = ({ onClose, onSuccess }) => {
   const [fName, setFname] = useState("");
@@ -12,11 +13,16 @@ const CandidateData = ({ onClose, onSuccess }) => {
   const [resume, setResume] = useState(null);
   const [errors, setErrors] = useState({});
 
+  const [submitting, setSubmitting] = useState(false);
+
   const [agreed, setAgreed] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+
+    setSubmitting(true);
+
     e.preventDefault();
 
     if (!resume) {
@@ -24,28 +30,28 @@ const CandidateData = ({ onClose, onSuccess }) => {
       return;
     }
 
-    if(!fName){
-        setErrors({ fName: "Name cannot be empty" });
+    if (!fName) {
+      setErrors({ fName: "Name cannot be empty" });
       return;
     }
 
-    if(!email){
-        setErrors({ email: "Email cannot be empty" });
+    if (!email) {
+      setErrors({ email: "Email cannot be empty" });
       return;
     }
 
-    if(!mobile){
-        setErrors({ mobile: "Phone number cannot be empty" });
+    if (!mobile) {
+      setErrors({ mobile: "Phone number cannot be empty" });
       return;
     }
 
-    if(!position){
-        setErrors({ position: "Position cannot be empty" });
+    if (!position) {
+      setErrors({ position: "Position cannot be empty" });
       return;
     }
 
-    if(!experience){
-        setErrors({ experience: "Experience cannot be empty" });
+    if (!experience) {
+      setErrors({ experience: "Experience cannot be empty" });
       return;
     }
 
@@ -60,7 +66,7 @@ const CandidateData = ({ onClose, onSuccess }) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/postCandidate`, {
         method: 'POST',
-            credentials: 'include',
+        credentials: 'include',
         body: formData,
       });
 
@@ -72,10 +78,10 @@ const CandidateData = ({ onClose, onSuccess }) => {
           allErrors[err.path] = err.msg;
         }
         setErrors(allErrors);
-    
+
         console.log("Validation errors:", data.msg);
       } else {
-       
+
         setFname("");
         setEmail("");
         setMobile("");
@@ -95,6 +101,8 @@ const CandidateData = ({ onClose, onSuccess }) => {
       console.error("Server error", err);
       setErrors({ general: "An error occurred. Please try again." });
       alert("Error adding candidate");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -103,85 +111,91 @@ const CandidateData = ({ onClose, onSuccess }) => {
       <h2>Add Candidate</h2>
       <form type="multipart" onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="fields">
-            <div>
-          <input
-            type="text"
-            name="fName"
-            value={fName}
-            onChange={(e) => setFname(e.target.value)}
-            placeholder="Full Name"
-          />
-          {errors.name && <p className="error">{errors.name}</p>}
+          <div>
+            <input
+              type="text"
+              name="fName"
+              value={fName}
+              onChange={(e) => setFname(e.target.value)}
+              placeholder="Full Name"
+            />
+            {errors.name && <p className="error">{errors.name}</p>}
           </div>
 
           <div>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email address"
-          />
-          {errors.email && <p className="error">{errors.email}</p>}
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email address"
+            />
+            {errors.email && <p className="error">{errors.email}</p>}
           </div>
         </div>
 
         <div className="fields">
-            <div>
-          <input
-            type="text"
-            name="mobile"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
-            placeholder="Phone Number"
-          />
-          {errors.mobile && <p className="error">{errors.mobile}</p>}
+          <div>
+            <input
+              type="text"
+              name="mobile"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              placeholder="Phone Number"
+            />
+            {errors.mobile && <p className="error">{errors.mobile}</p>}
           </div>
 
           <div>
-          <input
-            type="text"
-            name="position"
-            value={position}
-            onChange={(e) => setPosition(e.target.value)}
-            placeholder="Position"
-          />
-          {errors.position && <p className="error">{errors.position}</p>}
+            <input
+              type="text"
+              name="position"
+              value={position}
+              onChange={(e) => setPosition(e.target.value)}
+              placeholder="Position"
+            />
+            {errors.position && <p className="error">{errors.position}</p>}
           </div>
         </div>
 
         <div className="fields">
-            <div>
-          <input
-            type="text"
-            name="experience"
-            value={experience}
-            onChange={(e) => setExperience(e.target.value)}
-            placeholder="Experience"
-          />
-          {errors.experience && <p className="error">{errors.experience}</p>}
+          <div>
+            <input
+              type="text"
+              name="experience"
+              value={experience}
+              onChange={(e) => setExperience(e.target.value)}
+              placeholder="Experience"
+            />
+            {errors.experience && <p className="error">{errors.experience}</p>}
           </div>
 
           <div>
-          <input
-            type="file"
-            name="resume"
-            accept="application/pdf"
-            onChange={(e) => setResume(e.target.files[0])}
-          />
-          {errors.resume && <p className="error">{errors.resume}</p>}
+            <input
+              type="file"
+              name="resume"
+              accept="application/pdf"
+              onChange={(e) => setResume(e.target.files[0])}
+            />
+            {errors.resume && <p className="error">{errors.resume}</p>}
           </div>
         </div>
-          <input
-            type="checkbox"
-            className="checkbox"
-            checked={agreed}
-            onChange={(e) => setAgreed(e.target.checked)}
-          />
-          I agree to the terms
-        
+        <input
+          type="checkbox"
+          className="checkbox"
+          checked={agreed}
+          onChange={(e) => setAgreed(e.target.checked)}
+        />
+        I agree to the terms
+
         <div className="btn">
-        <button type="submit" disabled={!agreed}>Submit</button>
+          <button type="submit" disabled={!agreed}>
+            {submitting ? (
+              <BtnSpinner />
+            ) : (
+              "Submit"
+            )}
+          </button>
         </div>
       </form>
     </div>

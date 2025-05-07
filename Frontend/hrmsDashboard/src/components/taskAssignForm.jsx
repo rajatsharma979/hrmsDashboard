@@ -3,6 +3,7 @@ import React,{ useState } from "react";
 const taskAssign = ({ onClose, onSuccess, id })=>{
 
     const [task, setTask] = useState("");
+    const [submitting, setSubmitting] = useState(false);
 
     const handleSubmit = async (e)=>{
 
@@ -11,6 +12,7 @@ const taskAssign = ({ onClose, onSuccess, id })=>{
         try{
 
             console.log(task);
+            setSubmitting(true);
 
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/assignTask/${id}`,{
                 method: "POST",
@@ -34,7 +36,9 @@ const taskAssign = ({ onClose, onSuccess, id })=>{
         catch(error){
             alert("Error assigning task");
             console.log("Error assigning task");
-        } 
+        } finally{ 
+            setSubmitting(false);
+        }
     }
 
     return(
@@ -49,7 +53,13 @@ const taskAssign = ({ onClose, onSuccess, id })=>{
             onChange={(e) => setTask(e.target.value)}
             placeholder="Assign Task"
           />
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!agreed}>
+            {submitting ? (
+              <BtnSpinner />
+            ) : (
+              "Submit"
+            )}
+          </button>
             </form>
         </div>
     );

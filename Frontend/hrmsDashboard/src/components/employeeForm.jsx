@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import "./candidateForm.css";
+import BtnSpinner from './btnSpinner';
 
 const employeeData = ({ onClose, onSuccess, employee }) => {
   const [fName, setFname] = useState(employee.name);
@@ -11,9 +11,9 @@ const employeeData = ({ onClose, onSuccess, employee }) => {
   const [department, setDepartment] = useState(employee.department);
   const [joiningDate, setJoiningDate] = useState(employee.joiningDate);
 
-  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
 
-  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,6 +49,8 @@ const employeeData = ({ onClose, onSuccess, employee }) => {
     }
 
     console.log(employee);
+
+    setSubmitting(true);
 
     const formData = {
         id: employee.id,
@@ -101,7 +103,8 @@ const employeeData = ({ onClose, onSuccess, employee }) => {
       console.error("Server error", err);
       setErrors({ general: "An error occurred. Please try again." });
       alert("Error editing employee");
-     
+    } finally{
+        setSubmitting(false);
     }
   };
 
@@ -184,7 +187,13 @@ const employeeData = ({ onClose, onSuccess, employee }) => {
         </div>
         
         <div className="btn">
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!agreed}>
+            {submitting ? (
+              <BtnSpinner />
+            ) : (
+              "Submit"
+            )}
+          </button>
         </div>
       </form>
     </div>

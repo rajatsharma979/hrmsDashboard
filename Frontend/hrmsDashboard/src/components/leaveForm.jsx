@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import "./candidateForm.css";
+import BtnSpinner from './btnSpinner';
 
 const LeaveData = ({ onClose, onSuccess, employeeList }) => {
 
@@ -11,6 +12,8 @@ const LeaveData = ({ onClose, onSuccess, employeeList }) => {
   const [leaveReason, setLeaveReason] = useState("");
   const [leaveDoc, setLeaveDoc] = useState(null);
   const [errors, setErrors] = useState({});
+
+  const [submitting, setSubmitting] = useState(false);
 
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -72,6 +75,8 @@ const LeaveData = ({ onClose, onSuccess, employeeList }) => {
       return;
     }
 
+    setSubmitting(true);
+
     const formData = new FormData();
     formData.append("empId", empId);
     formData.append("name", fName);
@@ -116,6 +121,8 @@ const LeaveData = ({ onClose, onSuccess, employeeList }) => {
     } catch (err) {
       console.error("Server error", err);
       setErrors({ general: "An error occurred. Please try again." });
+    } finally{
+        setSubmitting(false);
     }
   };
 
@@ -219,7 +226,13 @@ const LeaveData = ({ onClose, onSuccess, employeeList }) => {
         </div>
         
         <div className="btn">
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!agreed}>
+            {submitting ? (
+              <BtnSpinner />
+            ) : (
+              "Submit"
+            )}
+          </button>
         </div>
       </form>
     </div>
