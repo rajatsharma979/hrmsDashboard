@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./signup.css";
+import BtnSpinner from "../components/btnSpinner";
 
 const signup = ({ onSignupSuccess })=>{
 
@@ -11,6 +12,8 @@ const signup = ({ onSignupSuccess })=>{
     const [password, setPassword] = useState("");
     const [cPassword, setCpassword] = useState("");
     const [errors, setErrors] = useState({});
+
+    const [submitting, setSubmitting] = useState(false);
 
     const handleSubmit = (e)=>{
 
@@ -27,6 +30,8 @@ const signup = ({ onSignupSuccess })=>{
             password: password
         }
         setErrors({});
+
+        setSubmitting(true);
 
         fetch(`${import.meta.env.VITE_BACKEND_URL}/signup`,{
             method: 'POST',
@@ -55,11 +60,13 @@ const signup = ({ onSignupSuccess })=>{
                 setErrors([]);
 
                 console.log("signed up successsfully");
+                setSubmitting(false);
                 onSignupSuccess(); 
             }
         })
         .catch(err=>{
             setErrors(["something went wrong. Please try again later"]);
+            setSubmitting(false);
             console.log("error in signup", err);
         })
     }
@@ -89,7 +96,13 @@ const signup = ({ onSignupSuccess })=>{
                     <input type="password" id="cpwd" name="cPassword" value={cPassword} onChange={(e) => setCpassword(e.target.value)} placeholder="Confirm Password" required></input>
                     {errors.cpwd && <p className="error">{errors.cpwd}</p>}
                     </div>
-                    <button type="submit">Register</button>
+                    <button type="submit">
+            {submitting ? (
+              <BtnSpinner />
+            ) : (
+              "Register"
+            )}
+          </button>
                 </form>
             </div>
         </div>

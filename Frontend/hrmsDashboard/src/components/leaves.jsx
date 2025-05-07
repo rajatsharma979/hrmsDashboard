@@ -110,6 +110,14 @@ const Leaves = ()=>{
                 )
             );
 
+            for(let emp of employees){
+                if(emp.leaveStatus === "Approved"){
+                    approvedLeaves.push(new Date(emp.leaveDate).toLocaleDateString('en-CA'));
+                }   
+            }
+
+            setLeaveDates(approvedLeaves);
+
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/updateEmployeeLeaveStatus/${id}`, {
               method: "POST",
               headers: {

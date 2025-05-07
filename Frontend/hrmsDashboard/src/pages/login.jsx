@@ -3,12 +3,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./signup.css";
+import BtnSpinner from "../components/btnSpinner";
 
 const login = ()=>{
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
+
+    const [submitting, setSubmitting] = useState(false);
 
     const navigate = useNavigate();
 
@@ -21,6 +24,8 @@ const login = ()=>{
             password: password
         }
         setErrors({});
+
+        setSubmitting(true);
 
         fetch(`${import.meta.env.VITE_BACKEND_URL}/login`,{
             method: 'POST',
@@ -43,11 +48,13 @@ const login = ()=>{
                 setErrors({});
 
                 console.log("logged in successsfully");
+                setSubmitting(false);
                 navigate('/dashboard');
             }
         })
         .catch(err=>{
             setErrors(["something went wrong. Please try again later"]);
+            setSubmitting(false);
             console.log("error in login", err);
         })
     }
@@ -66,7 +73,13 @@ const login = ()=>{
                     <input type="password" id="pwd" name="password" value={password}  onChange={(e) => setPassword(e.target.value)} placeholder="Password" required></input>
                     {errors.msg && <p className="error">{errors.msg}</p>}
                     </div>
-                    <button type="submit">Login</button>
+                    <button type="submit">
+            {submitting ? (
+              <BtnSpinner />
+            ) : (
+              "Login"
+            )}
+          </button>
                 </form>
             </div>
         </div>
