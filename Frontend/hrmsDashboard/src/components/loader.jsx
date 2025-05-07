@@ -1,7 +1,7 @@
 import react from "react";
 import { RiseLoader } from "react-spinners";
 
-import "loader.css";
+import "./loader.css";
 
 const Loader = () => {
 
