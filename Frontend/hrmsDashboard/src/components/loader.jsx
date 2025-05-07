@@ -6,7 +6,7 @@ import "./loader.css";
 const Loader = () => {
 
     return (
-        <div className="loader">
+        <div className="loader pageLoader">
             <div>
             <RiseLoader
                 color="rgb(255, 135, 241)"

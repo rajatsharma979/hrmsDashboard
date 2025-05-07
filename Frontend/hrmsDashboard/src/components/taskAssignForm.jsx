@@ -53,7 +53,7 @@ const taskAssign = ({ onClose, onSuccess, id })=>{
             onChange={(e) => setTask(e.target.value)}
             placeholder="Assign Task"
           />
-        <button type="submit" disabled={!agreed}>
+        <button type="submit">
             {submitting ? (
               <BtnSpinner />
             ) : (

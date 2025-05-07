@@ -7,3 +7,7 @@
 .loader.btnSpinner{
     background-color: rgb(255, 135, 241);
 }
+
+.loader.pageLoader{
+    height: 100vh;
+}

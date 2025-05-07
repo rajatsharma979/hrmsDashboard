@@ -187,7 +187,7 @@ const employeeData = ({ onClose, onSuccess, employee }) => {
         </div>
         
         <div className="btn">
-        <button type="submit" disabled={!agreed}>
+        <button type="submit">
             {submitting ? (
               <BtnSpinner />
             ) : (
