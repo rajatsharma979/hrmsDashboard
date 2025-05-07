@@ -20,8 +20,6 @@ const Leaves = ()=>{
 
     const [error, setError] = useState(null);
 
-    let approvedLeaves = [];
-
     const fetchEmployees = async () => {
             try {
                 const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/getLeaves`, {
@@ -39,6 +37,10 @@ const Leaves = ()=>{
     
                 const data = await response.json();
                 console.log("all emp", data.msg);
+                
+                
+
+                let approvedLeaves = [];
 
                 for(let emp of data.msg){
                     if(emp.leaveStatus === "Approved"){
@@ -101,21 +103,7 @@ const Leaves = ()=>{
         try {
 
             console.log("in status change");
-
-            setEmployees((prev) =>
-                prev.map((c) =>
-                  c.empId === id ? { ...c, status: newStatus } : c
-                )
-            );
-
-            for(let emp of employees){
-                if(emp.leaveStatus === "Approved"){
-                    approvedLeaves.push(new Date(emp.leaveDate).toLocaleDateString('en-CA'));
-                }   
-            }
-
-            setLeaveDates(approvedLeaves);
-
+            
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/updateEmployeeLeaveStatus/${id}`, {
               method: "POST",
               headers: {
@@ -126,7 +114,9 @@ const Leaves = ()=>{
             });
         
             if (!res.ok) throw new Error("Failed to update status");
-            //fetchEmployees();
+        
+            fetchEmployees();
+
 
           } catch (err) {
             console.error(err);
