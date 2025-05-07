@@ -104,7 +104,7 @@ const Leaves = ()=>{
 
             setEmployees((prev) =>
                 prev.map((c) =>
-                  c._id === id ? { ...c, status: newStatus } : c
+                  c.empId === id ? { ...c, status: newStatus } : c
                 )
             );
 
