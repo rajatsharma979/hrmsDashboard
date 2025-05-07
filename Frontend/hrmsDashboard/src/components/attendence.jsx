@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import FormModal from "./formModal";
 import TaskAssign from "./taskAssignForm";
+import Loader from "./loader";
 
 const attendance = ()=>{
 
@@ -82,8 +83,7 @@ const attendance = ()=>{
                 emp.task.toLowerCase().includes(searchQuery.toLowerCase())
             ) : filteredEmployeesByStatus;
 
-            if (loading) return <div className="loading">Loading candidates...</div>;
-
+            if (loading) return <Loader />;
     return(
         <div>
             <h3>Attendance</h3>

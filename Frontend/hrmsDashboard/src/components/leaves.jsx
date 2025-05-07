@@ -4,6 +4,7 @@ import Calendar from "react-calendar";
 import LeaveForm from "./leaveForm";
 import FormModal from "./formModal";
 import 'react-calendar/dist/Calendar.css';
+import Loader from "./loader";
 
 import "./leaves.css";
 
@@ -163,7 +164,7 @@ const Leaves = ()=>{
         return null;
       };
 
-      if (loading) return <div className="loading">Loading candidates...</div>;
+      if (loading) return <Loader />;
 
     return(
         

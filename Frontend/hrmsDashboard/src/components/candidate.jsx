@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import FormModal from "../components/formModal";
 import CandidateForm from "./candidateForm";
+import Loader from "./loader";
 
 const candidate = ()=>{
 
@@ -101,7 +102,7 @@ const candidate = ()=>{
         link.click();
     };
 
-    if (loading) return <div className="loading">Loading candidates...</div>;
+    if (loading) return <Loader />;
 
     return(
         <div>

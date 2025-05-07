@@ -4,6 +4,7 @@ import "./employee.css";
 import "../pages/dashboard.css";
 import EmployeeForm from "./employeeForm";
 import FormModal from "./formModal";
+import Loader from "./loader";
 
 const getEmployees = () => {
 
@@ -92,7 +93,7 @@ const getEmployees = () => {
 
         }
 
-        if (loading) return <div className="loading">Loading candidates...</div>;
+        if (loading) return <Loader />;
         
     return (
 
