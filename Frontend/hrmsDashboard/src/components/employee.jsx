@@ -79,7 +79,6 @@ const getEmployees = () => {
     
                 if(!res.ok){
                     throw new Error("Failed to delete");
-                    setLoading(false);
                 }
                 fetchEmployees();
 

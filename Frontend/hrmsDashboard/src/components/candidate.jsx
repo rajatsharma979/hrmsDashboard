@@ -65,6 +65,13 @@ const candidate = ()=>{
         try {
 
             console.log("in status change");
+
+            setCandidates((prev) =>
+                prev.map((c) =>
+                  c._id === id ? { ...c, status: newStatus } : c
+                )
+            );
+
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/updateCandidateStatus/${id}`, {
               method: "POST",
               headers: {
@@ -76,11 +83,7 @@ const candidate = ()=>{
         
             if (!res.ok) throw new Error("Failed to update status");
         
-            setCandidates((prev) =>
-              prev.map((c) =>
-                c._id === id ? { ...c, status: newStatus } : c
-              )
-            );
+            
             setLoading(false);
           } catch (err) {
             console.error(err);

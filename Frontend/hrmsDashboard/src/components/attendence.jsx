@@ -49,6 +49,13 @@ const attendance = ()=>{
                 try {
         
                     console.log("in status change");
+
+                    setEmployees((prev) =>
+                        prev.map((c) =>
+                          c._id === id ? { ...c, attendance: newStatus } : c
+                        )
+                    );
+
                     const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/updateEmployeeAttendance/${id}`, {
                       method: "POST",
                       headers: {
@@ -60,11 +67,7 @@ const attendance = ()=>{
                 
                     if (!res.ok) throw new Error("Failed to update status");
                 
-                    setEmployees((prev) =>
-                      prev.map((c) =>
-                        c._id === id ? { ...c, attendance: newStatus } : c
-                      )
-                    );
+                    
                   } catch (err) {
                     console.error(err);
                     alert("Error updating attendance");
