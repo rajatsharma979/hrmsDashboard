@@ -103,6 +103,13 @@ const Leaves = ()=>{
         try {
 
             console.log("in status change");
+
+            setEmployees((prev) =>
+                prev.map((c) =>
+                  c._id === id ? { ...c, status: newStatus } : c
+                )
+            );
+
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/updateEmployeeLeaveStatus/${id}`, {
               method: "POST",
               headers: {
@@ -113,9 +120,7 @@ const Leaves = ()=>{
             });
         
             if (!res.ok) throw new Error("Failed to update status");
-        
-            fetchEmployees();
-
+            //fetchEmployees();
 
           } catch (err) {
             console.error(err);
